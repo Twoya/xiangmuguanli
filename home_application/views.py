@@ -4,7 +4,7 @@ from common.mymako import render_mako_context
 from django.shortcuts import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
-import utils
+from account import utils
 
 user_info = {
     "is_login": False,
