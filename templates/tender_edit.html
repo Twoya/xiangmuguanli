@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>项目审核</title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <!-- Bootstrap css -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <!--蓝鲸提供的公用样式库 -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/bk/css/bk_pack.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/bk/js/bk.js"></script>
+    <!-- 数据埋点统计 -->
+    <script src="https://magicbox.bkclouds.cc/static_api/analysis.js"></script>
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]><script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/html5shiv.min.js"></script><script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/respond.min.js"></script><![endif]-->
+</head>
+
+<body class="bg-white" data-bg-color="bg-white">
+    <div class="king-page-box">
+        <div class="king-layout1-header">
+            <nav role="navigation" class="navbar navbar-default king-horizontal-nav3     f14">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bk-example-navbar-collapse-3">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="javascript:;">
+                            <img src="https://magicbox.bkclouds.cc/static_api/v3/bk/images/logo.png" alt="" class="logo"> </a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-responsive-collapse" id="bk-example-navbar-collapse-3">
+                        <ul class="nav navbar-nav ">
+                            <!--<li :class="{'bk-cur':item.active}"  v-for="item in renderData.items">-->
+                            <li> <a href="/index">首页<span></span></a> </li>
+                            <li class="bk-cur"> <a href="javascript:void(0);">项目管理<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu" style="display: none;">
+                                    <li><a href="/tender/summary">项目汇总</a></li>
+                                    <li><a href="/tender/process">项目流程</a></li>
+                                    <li><a href="/tender/check">项目审核</a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="/tender/evaluation">评估管理<span></span></a> </li>
+                            <li> <a href="/tender/finance">财务管理<span></span></a></li>
+                            <li> <a href="/tender/files">文档管理<span></span></a> </li>
+                            <li> <a href="/tender/user">用户信息<span></span></a> </li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索..."> </div>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <img src="https://magicbox.bkclouds.cc/static_api/v3/components/horizontal_nav3/images/avatar.png" class="avatar">
+                                    <span>{{ request.session.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="king-layout1-main clearfix">
+            <!-- content start -->
+            <div class="king-content-wrap" style="position: relative;top:-80px;">
+                <div class="king-layout1-content" style="margin-left: 216px;margin-right: 100px;position: relative;top: 100px;">
+                    <div class="panel panel-default mb0">
+                        <div class="panel-heading"> 项目信息 </div>
+                        <div class="panel-body" style="margin-left: 0px;">
+                            <form action="{{ "/tender/edit&page=" }}{{ page }}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="project_id" value="{{ project_id }}">
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目名称：</label>
+                                        <div class="col-sm-9">
+                                            {{ project_data.name }}
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目负责人：</label>
+                                        <div class="col-sm-9">
+                                        {{ project_data.leader }}
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目组成员：</label>
+                                        <div class="col-sm-9">
+                                        {{ project_data.teammates }}
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目状态：</label>
+                                        <div class="col-sm-9">
+                                            {{ project_data.status }}</div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目开始日期：</label>
+                                        <div class="col-sm-9">
+                                            {{ project_data.start }} </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目进度：</label>
+                                        <div class="col-sm-9">
+                                            {{ project_data.process }}
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目经费预算：</label>
+                                        <div class="col-sm-9">
+                                            <input style="width: 200px;"name="budget" value="{{ project_data.budget }}">
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">实际使用经费：</label>
+                                        <div class="col-sm-9">
+                                            {{ project_data.real }}
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="control-label col-sm-3 pt0 bk-h30 bk-lh30">需求分析报告：</label>
+                                        <div class="col-sm-9">
+                                            <button class="king-btn king-default king-file-btn king-btn-small bk-mt3 bk-block"> 查看
+                                                <input name="file" type="file"> </button>
+                                        </div>
+                                        <span style="color: red;">
+                                            {{ error_msg }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix">
+                                        <div class="col-sm-9 col-sm-offset-3" style="position: relative;left:100px;">
+                                            <input type="hidden" name="project_id" value="{{ project_id }}">
+                                            <input name="pass" value="审核通过" class="king-btn mr10  king-success" type="submit" ></input>
+                                            <input name="reject" value="未通过" class="king-btn-demo king-btn king-danger" type="submit"></input>
+                                            <a href="{{ "/tender/check&page=" }}{{ page }}"><button class="king-btn king-default " type="button">返回</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+    <script>
+        $(function(){
+            var li = $('.navbar-nav li');
+            li.each(function(){
+                $(this).click(function(){
+                    if( $(this).hasClass('opens') && $(this).find('ul li').length !=0){
+                        $(this).find('ul').slideUp(250);
+                        $(this).removeClass('opens');
+                    }else if($(this).find('ul li').length !=0){
+                        $(this).find('ul').slideDown(250);
+                        $(this).addClass('opens');
+                        $(this).siblings('li').removeClass('opens').find('ul').slideUp();
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>

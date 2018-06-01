@@ -1,0 +1,8 @@
+.form-group {
+    width: 500px;
+}
+
+.delete_model {
+    text-align: left;
+    position: absolute;top:50%;
+}

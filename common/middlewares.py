@@ -29,7 +29,7 @@ class CheckXssMiddleware(object):
             request.GET = self.__escape_data(request.path, request.GET, escape_type)
             # post参数转换
             request.POST = self.__escape_data(request.path, request.POST, escape_type)
-        except Exception, e:
+        except Exception as e:
             logger.error(u"CheckXssMiddleware 转换失败！错误信息：%s" % e)
         return None
 
@@ -96,7 +96,7 @@ class CheckXssMiddleware(object):
                 if is_path and param in script_v:
                     result_type = escape_type
                     break
-        except Exception, e:
+        except Exception as e:
             logger.error(u"CheckXssMiddleware 特殊path处理失败！错误信息%s" % e)
         return result_type
 

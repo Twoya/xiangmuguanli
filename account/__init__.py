@@ -1,3 +1,5 @@
-# -*- coding: utf-8 -*-
-__author__ = u"蓝鲸智云"
-__copyright__ = "Copyright © 2012-2017 Tencent BlueKing. All Rights Reserved."
+import users_urls
+import info_urls
+import finance_urls
+import tender_urls
+import admin_urls

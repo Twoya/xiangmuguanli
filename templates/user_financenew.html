@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>财务管理</title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <!-- Bootstrap css -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <!--蓝鲸提供的公用样式库 -->
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bkclouds.cc/static_api/v3/bk/css/bk_pack.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/bk/js/bk.js"></script>
+    <!-- 日期选择 -->
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+    <!-- 数据埋点统计 -->
+    <script src="https://magicbox.bkclouds.cc/static_api/analysis.js"></script>
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]><script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/html5shiv.min.js"></script><script src="https://magicbox.bkclouds.cc/static_api/v3/assets/js/respond.min.js"></script><![endif]-->
+</head>
+
+<body class="bg-white" data-bg-color="bg-white">
+    <div class="king-page-box">
+        <div class="king-layout1-header">
+            <nav class="navbar navbar-default king-horizontal-nav3     f14" role="navigation">
+                <div class="nav-container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bk-example-navbar-collapse-3">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="javascript:;">
+                            <img class="logo" alt="" src="https://magicbox.bkclouds.cc/static_api/v3/bk/images/logo.png"> </a>
+                    </div>
+                    <div class="collapse navbar-collapse navbar-responsive-collapse" id="bk-example-navbar-collapse-3">
+                        <ul class="nav navbar-nav ">
+                            <!--<li :class="{'bk-cur':item.active}"  v-for="item in renderData.items">-->
+                            <li> <a href="/index">首页<span></span></a> </li>
+                            <li> <a href="javascript:void(0);">项目管理<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu" style="display: none;">
+                                    <li><a href="/account/summary">项目汇总</a></li>
+                                    <li><a href="/account/process">项目流程</a></li>
+                                </ul>
+                            </li>
+                            <li> <a href="/account/evaluation">评估管理<span></span></a> </li>
+                            <li class="bk-cur"> <a href="/account/finance">财务管理<span></span></a> </li>
+                            <li> <a href="/account/files">文档管理<span></span></a> </li>
+                            <li> <a href="/account/user">用户信息<span></span></a> </li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="搜索..."> </div>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <img class="avatar" src="https://magicbox.bkclouds.cc/static_api/v3/components/horizontal_nav3/images/avatar.png">
+                                    <span>{{ request.session.username }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="king-layout1-main clearfix">
+            <!-- sidebar start -->
+            <div class="king-layout1-sidebar" style="width:216px;"></div>
+            <!-- sidebar end -->
+            <!-- content start -->
+            <div class="king-content-wrap">
+                <div class="king-layout1-content" style="margin-left: 200px;margin-right:200px;position: relative;top: 50px;">
+                    <div class="panel panel-default mb0">
+                        <div class="panel-heading"> 财务记录 </div>
+                        {% for key, item in projects_dict %}
+                            {% if key == project_id %}
+                            <form method="post" enctype="multipart/form-data" action={{ "/account/new_finance&id=" }}{{ project_id }}{{ "&page=" }}{{ page }}>
+                            <div class="panel-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">项目名称：</label>
+                                        <div class="col-sm-9">
+                                            <input name="name" class="form-control bk-valign-top" type="text" placeholder="提示信息" value={{ item.name }}> </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">流程归属：</label>
+                                        <div class="col-sm-9">
+                                            <select name="process">
+                                              <option value ="需求调研">需求调研</option>
+                                              <option value ="立项">立项</option>
+                                              <option value="前期">前期</option>
+                                              <option value="中期">中期</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">消费去处：</label>
+                                        <div class="col-sm-9">
+                                            <input name="where" class="form-control bk-valign-top" type="text" placeholder="提示信息"> </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">消费金额：</label>
+                                        <div class="col-sm-9">
+                                            <input name="money" class="form-control bk-valign-top" type="text" placeholder="提示信息"> </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix " style="height: 35px;">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">消费时间：</label>
+                                        <div class="king-block king-block-bordered" >
+                                            <div class="king-block-content clearfix" style="position: relative;left: 15px; bottom:20px; border-width: 0;">
+                                                <div class="input-group date" id="plugin9_demo2" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    <input class="form-control" size="16" type="text" value="">
+                                                    <input name="time" type="hidden" id="dtp_input2" value="" /><br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix "style="position: relative;top: 0px;">
+                                        <label class="col-sm-3 control-label bk-lh30 pt0">消费人：</label>
+                                        <div class="col-sm-9">
+                                            <input name="consumer" class="form-control bk-valign-top" type="text" placeholder="提示信息"> </div>
+                                    </div>
+                                </div>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix ">
+                                        <label class="control-label col-sm-3 pt0 bk-h30 bk-lh30">发票证明：</label>
+                                        <div class="col-sm-9">
+                                            <button class="king-btn king-default king-file-btn king-btn-small bk-mt3 bk-block"> 上传附件
+                                                <input name="file" type="file"> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="color: red;position: relative;left: 200px;">{{ error_msg }}</span>
+                                <div class="form-horizontal">
+                                    <div class="form-group clearfix">
+                                        <div class="col-sm-9 col-sm-offset-3">
+                                            <button class="king-btn mr10  king-success" type="submit">提交申请</button>
+                                            <a href={{ "/account/   finance&id=" }}{{ project_id }}{{ "&page=" }}{{ page }}>
+                                                <button class="king-btn king-default " type="button">取消</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+    <script>
+        //plugin9_demo2_js_start
+    //日期选择器(Bootstrap)-2，日期选择
+    $('#plugin9_demo2').datetimepicker({
+        language:  'zh-TW',
+        weekStart: 1,
+        todayBtn:  true,
+        autoclose: true,
+        todayHighlight: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false,
+        format:"yyyy-mm-dd",
+    });
+    //plugin9_demo2_js_end
+        $(function(){
+            var li = $('.navbar-nav li');
+            li.each(function(){
+                $(this).click(function(){
+                    if( $(this).hasClass('opens') && $(this).find('ul li').length !=0){
+                        $(this).find('ul').slideUp(250);
+                        $(this).removeClass('opens');
+                    }else if($(this).find('ul li').length !=0){
+                        $(this).find('ul').slideDown(250);
+                        $(this).addClass('opens');
+                        $(this).siblings('li').removeClass('opens').find('ul').slideUp();
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>

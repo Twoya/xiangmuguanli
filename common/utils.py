@@ -56,6 +56,6 @@ def texteditor_escape(str_escape):
         parser.feed(str_escape)
         parser.close()
         return parser.get_html()
-    except Exception, e:
+    except Exception as e:
         logger.error(u"js脚本注入检测发生异常，错误信息：%s" % e)
         return str_escape
